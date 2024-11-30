@@ -1,21 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import axios from "axios"; // Import Axios
 import Logo from "../image/img.png";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 export default function LoginMenu() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // Initialize error state
 
-  // Function to handle the form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(username);
-    console.log(password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const data = { username, password };
-    const url = "http://127.0.0.1:8000/sign";
+    const url = `http://127.0.0.1:8000/login?username=${username}&password=${password}`;
 
-    console.log(data);
+    try {
+      const response = await fetch(url);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        // Use setError to update the error state
+        if (data.success === false)
+          setError("username or password is incorrect");
+        else setError(""); // Clear error if login is successful
+      } else {
+        console.error("Error:", response.statusText);
+        setError("An error occurred. Please try again.");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      setError("Something went wrong. Please try again later.");
+    }
   };
+
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -110,6 +127,12 @@ export default function LoginMenu() {
                     Sign up
                   </a>
                 </p>
+                {/* Display error message if it exists */}
+                {error && (
+                  <div className="font-thin text-sm text-center text-red-500">
+                    {error}
+                  </div>
+                )}
               </form>
             </div>
           </div>
