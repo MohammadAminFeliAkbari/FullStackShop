@@ -1,13 +1,18 @@
+import { useState } from "react";
 import Logo from "../image/img.png";
 import { NavLink } from "react-router-dom";
-
 export default function Header() {
+  const [hidden, sethidden] = useState(true);
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <NavLink to="https://flowbite.com" className="flex items-center">
-            <img src={Logo} className="rounded-full mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+            <img
+              src={Logo}
+              className="rounded-full mr-3 h-6 sm:h-9"
+              alt="Flowbite Logo"
+            />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Flowbite
             </span>
@@ -22,6 +27,9 @@ export default function Header() {
             <NavLink
               to="#"
               className="bg-blue-700 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              onClick={() => {
+                window.location.replace("http://localhost:3000/signup");
+              }}
             >
               Get started
             </NavLink>
@@ -43,10 +51,11 @@ export default function Header() {
                   fill-rule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                   clip-rule="evenodd"
+                  onClick={() => sethidden((pre) => !pre)}
                 ></path>
               </svg>
               <svg
-                className="hidden w-6 h-6"
+                className={`${hidden ? "hidden" : ""} w-6 h-6`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +69,9 @@ export default function Header() {
             </button>
           </div>
           <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            className={`${
+              hidden ? "hidden" : ""
+            }  justify-between  items-center w-full lg:flex lg:w-auto lg:order-1`}
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">

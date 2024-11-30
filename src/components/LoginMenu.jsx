@@ -112,6 +112,9 @@ export default function LoginMenu() {
                   <a
                     href="#"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    onClick={() => {
+                      window.location.replace("http://localhost:3000/signup");
+                    }}
                   >
                     Sign up
                   </a>
