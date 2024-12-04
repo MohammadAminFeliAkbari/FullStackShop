@@ -61,7 +61,9 @@ function CustomCarousel({ children }) {
       {children.map((item, index) => {
         return (
           <div
-            className={"rounded-xl slider__item slider__item-active-" + (activeIndex + 1)}
+            className={
+              "rounded-xl slider__item slider__item-active-" + (activeIndex + 1)
+            }
             key={index}
           >
             {item}

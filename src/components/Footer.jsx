@@ -13,7 +13,7 @@ export default function Footer() {
         <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
             <NavLink to="#" className="hover:underline me-4 md:me-6">
-              About
+              درباره
             </NavLink>
           </li>
           <li>
@@ -23,7 +23,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Git Hub
+              گیت هاب
             </a>
           </li>
           <li>
@@ -32,12 +32,12 @@ export default function Footer() {
               target="_blank"
               className="hover:underline me-4 md:me-6"
             >
-              Licensing
+              قوانین
             </NavLink>
           </li>
           <li>
             <NavLink to="#" className="hover:underline">
-              Contact
+              محتوا
             </NavLink>
           </li>
         </ul>

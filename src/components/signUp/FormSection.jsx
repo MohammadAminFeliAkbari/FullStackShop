@@ -9,15 +9,15 @@ const validate = (values) => {
   const errors = {};
 
   if (!values.userName) {
-    errors.userName = "First Name cannot be empty";
+    errors.userName = "نام کاربری نباید خالی باشد";
   } else if (values.userName.length > 15) {
     errors.userName = "Must be 15 characters or less";
   }
 
   if (!values.password) {
-    errors.password = "Password is required";
+    errors.password = "رمز عبور لازم است";
   } else if (values.password.length < 8) {
-    errors.password = "Password must not be less than 8 characters";
+    errors.password = "رمز عبور نباید کمتر از 8 کاراکتر باشد";
   }
 
   return errors;
@@ -44,7 +44,7 @@ function FormSection() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          if (data.success == false) setError("invalid username");
+          if (data.success == false) setError("این یوزرنیم قبلا استفاده شده");
           else {
             setUsernameLogin(values.userName);
             navigate("/");
@@ -67,20 +67,25 @@ function FormSection() {
         <form onSubmit={formik.handleSubmit}>
           <input
             type="text"
-            placeholder="user name"
+            placeholder="نام کاربری"
             name="userName"
             id="userName"
             onChange={formik.handleChange}
             value={formik.values.userName}
           />
           {formik.errors.userName || Error ? (
-            <div className="error">
-              {Error ? "invalid username" : formik.errors.userName}
+            <div className="error flex gap-4 text-md mb-2 ml-10">
+              <button className="text-sm font-medium text-primary-600 text-center hover:underline text-gray-600">
+                فراموشی رمز؟
+              </button>
+              {Error
+                ? "(!نام کاربری دیگری استفاده کنید) این یوزرنیم قبلا استفاده شده"
+                : formik.errors.userName}
             </div>
           ) : null}
           <input
             type="password"
-            placeholder="Password"
+            placeholder="رمز عبور"
             name="password"
             id="password"
             onChange={formik.handleChange}
@@ -93,15 +98,9 @@ function FormSection() {
             type="submit"
             className="submit-btn text-white cursor-pointer"
           >
-            CLAIM YOUR FREE TRIAL
+            ثبت نام
           </button>
         </form>
-        <p className="terms-text">
-          By clicking the button, you are agreeing to our&nbsp;
-          <a href="nothing" className="terms-link">
-            Terms and Services
-          </a>
-        </p>
       </div>
     </div>
   );
