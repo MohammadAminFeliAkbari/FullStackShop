@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../App";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 
 export default function LoginMenu() {
   const [username, setUsername] = useState("");
@@ -21,8 +21,7 @@ export default function LoginMenu() {
         const data = await response.json();
         console.log(data);
         // Use setError to update the error state
-        if (data.success === false)
-          setError("username or password is incorrect");
+        if (data.success === false) setError("نام کاربری یا پسوورد اشتباه است");
         else {
           setUsernameLogin(username);
           navigate("/");
@@ -99,7 +98,9 @@ export default function LoginMenu() {
                     </div>
                   </div>
                   <a
-                    href="#"
+                    onClick={() => {
+                      navigate("/forget");
+                    }}
                     className="text-sm font-medium text-primary-600 hover:underline text-gray-600"
                   >
                     فراموشی رمز؟
@@ -109,7 +110,7 @@ export default function LoginMenu() {
                   type="submit"
                   className="w-full bg-blue-700 hover:scale-105 transition hover:bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  ثبت نام
+                  ورود
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   حساب کاربری ندارید؟
@@ -117,7 +118,7 @@ export default function LoginMenu() {
                     href="#"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                     onClick={() => {
-                      window.location.replace("http://localhost:3000/signup");
+                      navigate("/signup");
                     }}
                   >
                     ثبت نام

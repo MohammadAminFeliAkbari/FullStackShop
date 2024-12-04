@@ -8,7 +8,7 @@ export default function Footer() {
           <NavLink to="https://flowbite.com/" className="hover:underline">
             Flowbite™
           </NavLink>
-          . All Rights Reserved.
+          تمامی حقوق محفوظ است.
         </span>
         <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
