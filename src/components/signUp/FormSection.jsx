@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import "./signUpCss.css";
-import { AppContext } from "../App";
+import { AppContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 // Validation function
