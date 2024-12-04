@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import "./signUpCss.css";
+import { AppContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 // Validation function
 const validate = (values) => {
   const errors = {};
+
   if (!values.userName) {
     errors.userName = "First Name cannot be empty";
   } else if (values.userName.length > 15) {
@@ -21,6 +24,9 @@ const validate = (values) => {
 };
 
 function FormSection() {
+  const { usernameLogin, setUsernameLogin } = useContext(AppContext);
+  const navigate = useNavigate();
+
   const [Error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
@@ -39,6 +45,10 @@ function FormSection() {
           const data = await response.json();
           console.log(data);
           if (data.success == false) setError("invalid username");
+          else {
+            setUsernameLogin(values.userName);
+            navigate("/");
+          }
         }
       } catch (error) {
         // console.error("Fetch error:", error);
@@ -49,10 +59,10 @@ function FormSection() {
 
   return (
     <div className="section-container ">
-      <button className="trial-btn text-white cursor-pointer">
+      {/* <button className="trial-btn text-white cursor-pointer">
         <span className="text-bold">Try it free 7 days</span> then
         \$20/mo.thereafter
-      </button>
+      </button> */}
       <div className="form-container">
         <form onSubmit={formik.handleSubmit}>
           <input

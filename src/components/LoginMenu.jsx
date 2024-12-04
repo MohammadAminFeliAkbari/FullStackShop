@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../App";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function LoginMenu() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // Initialize error state
+  const [error, setError] = useState("");
+  const { usernameLogin, setUsernameLogin } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +23,10 @@ export default function LoginMenu() {
         // Use setError to update the error state
         if (data.success === false)
           setError("username or password is incorrect");
-        else setError(""); // Clear error if login is successful
+        else {
+          setUsernameLogin(username);
+          navigate("/");
+        }
       } else {
         console.error("Error:", response.statusText);
         setError("An error occurred. Please try again.");
