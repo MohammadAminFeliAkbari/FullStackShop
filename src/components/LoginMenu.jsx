@@ -1,7 +1,4 @@
 import { useState } from "react";
-import axios from "axios"; // Import Axios
-import Logo from "../image/img.png";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 export default function LoginMenu() {
   const [username, setUsername] = useState("");

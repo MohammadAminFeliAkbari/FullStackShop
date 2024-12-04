@@ -23,3 +23,14 @@ async def login(username: str = Query(...), password: str = Query(...)):
             return {"success": True}
     print({"success": False})
     return {"success": False}
+
+
+@app.get("/sign")
+async def sign(username: str = Query(...), password: str = Query(...)):
+    flag = True
+    for item in users:
+        if item["username"] == username:
+            flag = False
+            return {"success": False}
+    users.append({"username": username, "password": password})
+    return {"success": True}

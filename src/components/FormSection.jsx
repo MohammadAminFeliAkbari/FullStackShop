@@ -1,25 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import "./signUpCss.css";
 
+// Validation function
 const validate = (values) => {
   const errors = {};
-  if (!values.firstName) {
-    errors.firstName = "First Name cannot be empty";
-  } else if (values.firstName.length > 15) {
-    errors.firstName = "Must be 15 characters or less";
-  }
-
-  if (!values.lastName) {
-    errors.lastName = "Last Name cannot be empty";
-  } else if (values.lastName.length > 20) {
-    errors.lastName = "Must be 20 characters or less";
-  }
-
-  if (!values.email) {
-    errors.email = "Email is required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+  if (!values.userName) {
+    errors.userName = "First Name cannot be empty";
+  } else if (values.userName.length > 15) {
+    errors.userName = "Must be 15 characters or less";
   }
 
   if (!values.password) {
@@ -32,15 +21,29 @@ const validate = (values) => {
 };
 
 function FormSection() {
+  const [Error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
+      userName: "",
+      password: "", // Include the password field here
     },
     validate,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      console.log(values);
+      const url = `http://127.0.0.1:8000/sign?username=${values.userName}&password=${values.password}`;
+
+      try {
+        const response = await fetch(url);
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          if (data.success == false) setError("invalid username");
+        }
+      } catch (error) {
+        // console.error("Fetch error:", error);
+        // setError("Something went wrong. Please try again later.");
+      }
     },
   });
 
@@ -48,31 +51,22 @@ function FormSection() {
     <div className="section-container ">
       <button className="trial-btn text-white cursor-pointer">
         <span className="text-bold">Try it free 7 days</span> then
-        $20/mo.thereafter
+        \$20/mo.thereafter
       </button>
       <div className="form-container">
         <form onSubmit={formik.handleSubmit}>
           <input
             type="text"
-            placeholder="First Name"
-            name="firstName"
-            id="firstName"
+            placeholder="user name"
+            name="userName"
+            id="userName"
             onChange={formik.handleChange}
-            value={formik.values.firstName}
+            value={formik.values.userName}
           />
-          {formik.errors.firstName ? (
-            <div className="error">{formik.errors.firstName}</div>
-          ) : null}
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            id="lastName"
-            onChange={formik.handleChange}
-            value={formik.values.lastName}
-          />
-          {formik.errors.lastName ? (
-            <div className="error">{formik.errors.lastName}</div>
+          {formik.errors.userName || Error ? (
+            <div className="error">
+              {Error ? "invalid username" : formik.errors.userName}
+            </div>
           ) : null}
           <input
             type="password"
@@ -80,7 +74,7 @@ function FormSection() {
             name="password"
             id="password"
             onChange={formik.handleChange}
-            value={formik.values.password}
+            value={formik.values.password} // Ensure this is linked to Formik
           />
           {formik.errors.password ? (
             <div className="error">{formik.errors.password}</div>
