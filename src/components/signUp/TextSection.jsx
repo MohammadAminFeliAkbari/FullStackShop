@@ -4,8 +4,8 @@ import Typewriter from "typewriter-effect";
 
 function TextSection() {
   return (
-    <div className="text-container text-purple-950 text-center drop-shadow-2xl">
-      <h2 className="text-2xl">
+    <div className="text-container text-gray-800 text-center drop-shadow-2xl">
+      <h2 className="text-2xl text-center">
         <Typewriter
           onInit={(tp) => {
             tp.pauseFor(1500)

@@ -1,4 +1,4 @@
-import h2 from "./slider/data/Screenshot 2024-12-04 113031.png";
+import './home.css'
 import Slider from "./slider/slider";
 
 export default function Home() {
@@ -11,10 +11,9 @@ export default function Home() {
           "linear-gradient(0deg, rgba(127,143,233,1) 13%, rgba(63,68,104,1) 100%)",
       }}
     >
-      <div className="m-6 rounded-xl">
+      <div className="home m-6 rounded-xl">
         <Slider />
-      </div>
-
+      </div> 
     </div>
   );
 }

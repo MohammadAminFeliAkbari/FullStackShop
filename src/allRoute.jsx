@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import LoginMenu from "./components/LoginMenu";
 import SignUp from "./components/signUp/signUp";
-import Forget from "./components/Forget";
+import Forget from "./components/Forget/Forget";
 import Home from "./components/Home/Home";
 
 export default function AllRoute() {

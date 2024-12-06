@@ -4,7 +4,7 @@ import TextSection from "./TextSection";
 export default function SignUp() {
   return (
     <div
-      className="app p-8"
+      className="app p-8 gap-5"
       style={{
         background: "rgb(63,94,251)",
         background:

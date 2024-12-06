@@ -1,0 +1,13 @@
+:root {
+  --direction: ltr; 
+}
+
+.home {
+  direction: var(--direction);
+}
+
+@media (width < 900px) {
+  .home {
+    display: none;
+  }
+} 
