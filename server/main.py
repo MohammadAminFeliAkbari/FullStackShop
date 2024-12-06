@@ -36,6 +36,7 @@ async def sign(username: str = Query(...), password: str = Query(...)):
 
 @app.get("/forget")
 async def sign(username: str = Query(...)):
+    print(username)
     for item in users:
         if item["username"] == username:
             return {"success": True}
@@ -44,8 +45,8 @@ async def sign(username: str = Query(...)):
 
 @app.get("/forget/change")
 async def sign(username: str = Query(...), password: str = Query(...)):
+    print(username , password)
     for item in users:
         if item["username"] == username:
-            item["username"] = password
+            item["password"] = password
             return {"success": True}
-    return {"success": False}

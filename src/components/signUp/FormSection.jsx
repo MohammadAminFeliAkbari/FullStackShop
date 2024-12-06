@@ -75,7 +75,7 @@ function FormSection() {
           />
           {formik.errors.userName || Error ? (
             <div className="error flex gap-4 text-md mb-2 ml-10">
-              <button className="text-sm font-medium text-primary-600 text-center hover:underline text-gray-600">
+              <button onClick={() => navigate('/forget')} className="text-sm font-medium text-primary-600 text-center hover:underline text-gray-600">
                 فراموشی رمز؟
               </button>
               {Error
