@@ -8,7 +8,7 @@ export default function Header () {
   const { usernameLogin, setUsernameLogin } = useContext(AppContext)
   return (
     <header>
-      <nav className='border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-100'>
+      <nav className='border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-100 bg-opacity-5'>
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
           <NavLink to='https://flowbite.com' className='flex items-center'>
             <img
