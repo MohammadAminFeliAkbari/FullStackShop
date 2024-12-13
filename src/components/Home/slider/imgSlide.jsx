@@ -30,8 +30,8 @@ export default function ImgSlide () {
 
 function S ({ active, img, text, id }) {
   return (
-    <div className={`item ${active} h-[300px] animate__fadeIn`} id={id}>
-      <img src={img} alt='' className='w-full object-cover' />
+    <div className={`${active} animate__fadeIn`} id={id}>
+      <img src={img} alt='' className='w-full' />
       <h2 className='text-center absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-thin text-white z-10 bg-black bg-opacity-50 p-2 rounded'>
         {text}
       </h2>

@@ -1,12 +1,14 @@
-import Four_img from './Bottom/App'
+import Four_img from './Bottom/Four_img'
 import './home.css'
-import Slider from './slider/slider'
+import ImgSlide from './slider/imgSlide'
+
+import h3 from '../../image/h4.jpg'
 
 export default function Home () {
   return (
-    <div className='flex flex-col bg-opacity-50'>
-      <Slider />
-      <Four_img/>
+    <div className='flex flex-col mb-20 gap-2'>
+        <ImgSlide />
+        <Four_img />
     </div>
   )
 }
