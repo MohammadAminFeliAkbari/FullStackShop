@@ -23,13 +23,13 @@ export default function Com({ information, numberStart, img, price, offer }) {
             <div className="title my-1 font-normal">
                 <h4>{information}</h4>
             </div>
-            <div className="buttons mt-2 mb-1 flex px-3 flex-row justify-between">
+            <div className="buttons mx-5 my-4 flex px-3 flex-row justify-between">
                 <div className="left flex gap-1 text-gray-500">
-                    <div className="extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-7 w-7 text-gray-800 bg-green-600 rounded-lg transition-all duration-300">
+                    <div className="extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300">
                         <FontAwesomeIcon icon={faShoppingCart} className="text-gray-200" />
                         <span className="hidden group-hover:inline ml-2 text-gray-200">خرید</span>
                     </div>
-                    <div className="extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-7 w-7 text-gray-800 bg-green-600 rounded-lg transition-all duration-300">
+                    <div className="extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300">
                         <FontAwesomeIcon icon={faHeart} className="text-gray-200" />
                         <span className="hidden group-hover:inline ml-2 text-gray-200">علاقه</span>
                     </div>
