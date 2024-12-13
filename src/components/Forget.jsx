@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../App";
+import { AppContext } from "../App";
 
 export default function Forget() {
   const [password, setPassword] = useState('');
@@ -64,7 +64,7 @@ export default function Forget() {
   };
 
   return (
-    <div className="flex items-center justify-center py-4 bg-gradient-to-r from-pink-300 to-pink-600">
+    <div className="flex items-center justify-center py-4 bg-gradient-to-r">
       <form onSubmit={handleSubmit} className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md w-full max-w-sm justify-center rtl m-3 hover:shadow-xl transition-all">
         <h2 className="text-lg font-semibold mb-4">فراموشی رمز عبور</h2>
         <input

@@ -1,98 +1,97 @@
-import { useContext, useState } from "react";
-import { AppContext } from "../App";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
-import './Forget/forget.css'
+import { useContext, useState } from 'react'
+import { AppContext } from '../App'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
-export default function LoginMenu() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const { usernameLogin, setUsernameLogin } = useContext(AppContext);
-  const navigate = useNavigate();
+export default function LoginMenu () {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const { usernameLogin, setUsernameLogin } = useContext(AppContext)
+  const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault()
 
-    const url = `http://127.0.0.1:8000/login?username=${username}&password=${password}`;
+    const url = `http://127.0.0.1:8000/login?username=${username}&password=${password}`
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url)
 
       if (response.ok) {
-        const data = await response.json();
-        console.log(data);
+        const data = await response.json()
+        console.log(data)
         // Use setError to update the error state
-        if (data.success === false) setError("نام کاربری یا پسوورد اشتباه است");
+        if (data.success === false) setError('نام کاربری یا پسوورد اشتباه است')
         else {
-          setUsernameLogin(username);
-          navigate("/");
+          setUsernameLogin(username)
+          navigate('/')
         }
       } else {
-        console.error("Error:", response.statusText);
-        setError("An error occurred. Please try again.");
+        console.error('Error:', response.statusText)
+        setError('An error occurred. Please try again.')
       }
     } catch (error) {
-      console.error("Fetch error:", error);
-      setError("Something went wrong. Please try again later.");
+      console.error('Fetch error:', error)
+      setError('Something went wrong. Please try again later.')
     }
-  };
+  }
 
   return (
     <>
-      <section className="">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+      <section className=''>
+        <div className=' flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
+          <div className='glassCss w-full  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 '>
+            <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
+              <h1 className='text-xl font-bold leading-tight tracking-tight   md:text-2xl '>
                 وارد حساب کاربری خود شوید
               </h1>
-              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              <form className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
                 <div>
                   <label
-                    htmlFor="username"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor='username'
+                    className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
                   >
                     نام کاربری
                   </label>
                   <input
-                    name="username"
-                    id="username"
-                    className="bg-gray-50 border outline-none text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="john..."
+                    name='username'
+                    id='username'
+                    className='bg-gray-50 border outline-none text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    placeholder='john...'
                     required
-                    onChange={(event) => setUsername(event.target.value)}
+                    onChange={event => setUsername(event.target.value)}
                   />
                 </div>
                 <div>
                   <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor='password'
+                    className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
                   >
                     روزعبور
                   </label>
                   <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-800 outline-none text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type='password'
+                    name='password'
+                    id='password'
+                    placeholder='••••••••'
+                    className='bg-gray-50 border border-gray-800 outline-none text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                     required
-                    onChange={(event) => setPassword(event.target.value)}
+                    onChange={event => setPassword(event.target.value)}
                   />
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
+                <div className='flex items-center justify-between'>
+                  <div className='flex items-start'>
+                    <div className='flex items-center h-5'>
                       <input
-                        id="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                        id='remember'
+                        type='checkbox'
+                        className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800'
                       />
                     </div>
-                    <div className="ml-3 text-sm">
+                    <div className='ml-3 text-sm'>
                       <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
+                        htmlFor='remember'
+                        className='text-gray-500 dark:text-gray-300'
                       >
                         به خاطر سپردن
                       </label>
@@ -100,26 +99,26 @@ export default function LoginMenu() {
                   </div>
                   <a
                     onClick={() => {
-                      navigate("/forget");
+                      navigate('/forget')
                     }}
-                    className="text-sm font-medium text-primary-600 hover:underline text-gray-600"
+                    className='text-sm font-medium text-primary-600 hover:underline text-gray-600'
                   >
                     فراموشی رمز؟
                   </a>
                 </div>
                 <button
-                  type="submit"
-                  className="w-full bg-blue-700 hover:scale-105 transition hover:bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  type='submit'
+                  className='w-full bg-blue-700 hover:scale-105 transition hover:bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
                 >
                   ورود
                 </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
                   حساب کاربری ندارید؟
                   <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    href='#'
+                    className='font-medium text-primary-600 hover:underline dark:text-primary-500'
                     onClick={() => {
-                      navigate("/signup");
+                      navigate('/signup')
                     }}
                   >
                     ثبت نام
@@ -127,7 +126,7 @@ export default function LoginMenu() {
                 </p>
                 {/* Display error message if it exists */}
                 {error && (
-                  <div className="font-thin text-sm text-center text-red-500">
+                  <div className='font-thin text-sm text-center text-red-500'>
                     {error}
                   </div>
                 )}
@@ -137,5 +136,5 @@ export default function LoginMenu() {
         </div>
       </section>
     </>
-  );
+  )
 }
