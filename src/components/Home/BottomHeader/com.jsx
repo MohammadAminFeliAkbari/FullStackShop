@@ -6,9 +6,9 @@ import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Com({ information, numberStart, img, price, offer }) {
     return (
-        <div className=" w-[400px] choping-card items-center justify-center text-center shadow-md hover:scale-105 transition-all rounded-smp-3 mx-3 my-1">
+        <div className=" w-[400px] h-[350px] choping-card items-center justify-center text-center shadow-md hover:scale-105 transition-all rounded-smp-3 mx-3 my-1">
             <div className="img-section flex flex-col items-center justify-center relative">
-                <img className="rounded w/[60%]" src={img} alt={information} />
+                <img className="rounded w-[60%]" src={img} alt={information} />
                 {offer && (
                     <span className="bg-orange-600 text-gray-200 px-2 py-1 rounded-md text-center right-1 top-1 absolute">
                         پیشنهاد ویژه
