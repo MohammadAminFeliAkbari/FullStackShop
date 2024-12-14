@@ -16,7 +16,7 @@ export default function TopFooter() {
             <Swiper
                 // install Swiper modules  
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
-                spaceBetween={0}
+                spaceBetween={200}
                 centeredSlides={true}
                 // Use breakpoints for responsive design  
                 breakpoints={{
@@ -27,7 +27,7 @@ export default function TopFooter() {
                     },
                     // when window width is <= 768px  
                     768: {
-                        slidesPerView: 2,
+                        slidesPerView: 1,
                         spaceBetween: 30
                     },
                     // when window width is > 768px  
