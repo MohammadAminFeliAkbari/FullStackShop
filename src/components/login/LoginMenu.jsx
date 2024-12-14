@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react'
-import { AppContext } from '../App'
+import { AppContext } from '../../App'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import './login.css'
 
-export default function LoginMenu () {
+export default function LoginMenu() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -38,11 +39,10 @@ export default function LoginMenu () {
 
   return (
     <>
-      <section className=''>
-        <div className=' flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-          <div className='glassCss w-full  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 '>
+        <div className='login flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
+          <div className='glassCss w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 '>
             <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-              <h1 className='text-xl font-bold leading-tight tracking-tight   md:text-2xl '>
+              <h1 className='text-xl font-bold leading-tight tracking-tight md:text-2xl '>
                 وارد حساب کاربری خود شوید
               </h1>
               <form className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
@@ -112,7 +112,7 @@ export default function LoginMenu () {
                 >
                   ورود
                 </button>
-                <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
+                <p className='text-sm font-light text-gray-600'>
                   حساب کاربری ندارید؟
                   <a
                     href='#'
@@ -134,7 +134,6 @@ export default function LoginMenu () {
             </div>
           </div>
         </div>
-      </section>
     </>
   )
 }

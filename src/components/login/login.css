@@ -1,0 +1,10 @@
+.login {
+  background-image: url(../../image/bgSignUp.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  height: 80vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
