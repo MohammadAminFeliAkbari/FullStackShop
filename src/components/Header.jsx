@@ -3,12 +3,12 @@ import Logo from '../image/img.png'
 import { NavLink } from 'react-router-dom'
 import { AppContext } from '../App'
 import { CiLogout } from 'react-icons/ci'
-export default function Header () {
+export default function Header() {
   const [hidden, sethidden] = useState(true)
   const { usernameLogin, setUsernameLogin } = useContext(AppContext)
   return (
     <header>
-      <nav className='border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-100 bg-opacity-5'>
+      <nav className='border-gray-200 py-1 bg-gray-100 bg-opacity-5'>
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
           <NavLink to='https://flowbite.com' className='flex items-center'>
             <img
@@ -32,7 +32,7 @@ export default function Header () {
               <NavLink
                 to='/login'
                 onClick={() => sethidden(() => true)}
-                className='  focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 hover:bg-gray-400 transition-all hover:text-black focus:outline-none dark:focus:ring-gray-800'
+                className='border  focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 hover:bg-gray-400 transition-all hover:text-black focus:outline-none dark:focus:ring-gray-800'
               >
                 ورود
               </NavLink>
@@ -68,9 +68,8 @@ export default function Header () {
             </div>
           )}
           <div
-            className={`${
-              hidden ? 'hidden' : ''
-            }  justify-between  items-center w-full lg:flex lg:w-auto lg:order-1`}
+            className={`${hidden ? 'hidden' : ''
+              }  justify-between  items-center w-full lg:flex lg:w-auto lg:order-1`}
             id='mobile-menu-2'
           >
             <ul className='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 gap-3'>
