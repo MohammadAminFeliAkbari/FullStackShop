@@ -1,13 +1,11 @@
 import { FaStar, FaRegHeart } from 'react-icons/fa' // Changed import to FaRegHeart
-import { MdShoppingCart } from 'react-icons/md' // Imported MdShoppingCart
-import { IoHeartSharp } from 'react-icons/io5' // Keep this if you want to retain IoHeartSharp
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { AppContext } from '../../../App'
 
 export default function Com({ information, numberStart, img, price, offer }) {
-  const { usernameLogin } = useContext(AppContext)
+  const { usernameLogin, BASE_URL } = useContext(AppContext)
 
   const handleClick = () => {
     if (usernameLogin.length != 0) console.log('ok')
@@ -17,13 +15,13 @@ export default function Com({ information, numberStart, img, price, offer }) {
   return (
     <div className=' w-[400px] h-[350px] choping-card items-center justify-center text-center shadow-md hover:scale-105 transition-all rounded-smp-3 mx-3 my-1'>
       <div className='img-section flex flex-col items-center justify-center relative'>
-        <img className='rounded w-[60%]' src={img} alt={information} />
+        <img className='rounded w-[60%]' src={`${BASE_URL}image?id=${img}`} alt={information} />
         {offer && (
           <span className='bg-orange-600 text-gray-200 px-2 py-1 rounded-md text-center right-1 top-1 absolute'>
             پیشنهاد ویژه
           </span>
         )}
-        <div className='flex gap-1 absolute top-1 left-1'>
+        <div className='flex gap-1 absolute top-3 left-3'>
           {Array.from({ length: numberStart }).map((_, index) => (
             <FaStar key={index} className='text-yellow-500' />
           ))}

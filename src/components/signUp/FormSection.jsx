@@ -35,7 +35,6 @@ function FormSection() {
     },
     validate,
     onSubmit: async (values) => {
-      console.log(values);
       const url = `http://127.0.0.1:8000/sign?username=${values.userName}&password=${values.password}`;
 
       try {
@@ -43,7 +42,6 @@ function FormSection() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           if (data.success == false) setError("این یوزرنیم قبلا استفاده شده");
           else {
             setUsernameLogin(values.userName);

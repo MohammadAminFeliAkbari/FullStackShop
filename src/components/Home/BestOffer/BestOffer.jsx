@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
-import Img_friday from '../../../image/friday.jpg'
-import Img_supr_prudect from '../../../image/super-product.jpg'
+import { useContext, useEffect, useState } from 'react'
+// import Img_supr_prudect from '../../../image/super-product.jpg'
+import { AppContext } from '../../../App'
+import axios from 'axios';
 
-export default function BestOffer () {
+export default function BestOffer() {
+  const { BASE_URL } = useContext(AppContext);
   const initialTime = 70000 // Total time in seconds
   const [remaining, setRemaining] = useState(initialTime)
   const [h, setH] = useState(0)
@@ -19,7 +21,6 @@ export default function BestOffer () {
         return prev - 1
       })
     }, 1000)
-
     return () => clearInterval(interval)
   }, [])
 
@@ -43,7 +44,7 @@ export default function BestOffer () {
               <div className='row flex justify-center items-center gap-20'>
                 <div className='order-1'>
                   <div className='image-container'>
-                    <img src={Img_supr_prudect} alt='' />
+                    <img src='http://127.0.0.1:8000/image?id=super-product' alt='' />
                   </div>
                 </div>
                 <div className='spesification flex items-center flex-col justify-center px-4'>

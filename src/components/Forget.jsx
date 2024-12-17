@@ -19,7 +19,6 @@ export default function Forget() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data.success);
 
         if (data.success === true) {
           setIsUserName(true);

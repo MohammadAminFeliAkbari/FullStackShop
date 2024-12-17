@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import Logo from '../image/img.png'
 import { NavLink } from 'react-router-dom'
 import { AppContext } from '../App'
 import { CiLogout } from 'react-icons/ci'
@@ -15,7 +14,7 @@ export default function Header() {
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
           <NavLink to='https://flowbite.com' className='flex items-center gap-1'>
             <img
-              src={Logo}
+              src={'http://127.0.0.1:8000/LOGO'}
               className='rounded-full mr-3 h-6 sm:h-9'
               alt='Flowbite Logo'
             />
