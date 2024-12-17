@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import details from './details';
 import { AppContext } from '../../../App';
 
 export default function ImgSlide() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);
   const { BASE_URL } = useContext(AppContext);
-  const totalImages = details.length;
+  let totalImages = data.length;
 
   const fetchData = async () => {
     const response = await fetch(`${BASE_URL}slider`);
@@ -21,7 +20,6 @@ export default function ImgSlide() {
     const interval = setInterval(() => {
       setCurrentIndex(prevIndex => (prevIndex + 1) % totalImages);
     }, 6000);
-
     return () => clearInterval(interval); // Clean up the interval on component unmount  
   }, [totalImages, BASE_URL]); // Added BASE_URL to dependencies  
 

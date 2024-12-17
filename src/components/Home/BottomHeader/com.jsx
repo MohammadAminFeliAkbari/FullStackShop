@@ -7,9 +7,18 @@ import { AppContext } from '../../../App'
 export default function Com({ information, numberStart, img, price, offer }) {
   const { usernameLogin, BASE_URL } = useContext(AppContext)
 
-  const handleClick = () => {
-    if (usernameLogin.length != 0) console.log('ok')
-    else console.log('not ok')
+  const handleClick = async (url) => {
+    // if (usernameLogin)
+    try {
+      const U = `${BASE_URL}add${url}?img=${img}&username=${usernameLogin}`
+      console.log(U);
+
+      const response = await fetch(U)
+      if (!response.ok)
+        console.log("not ok");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -32,20 +41,24 @@ export default function Com({ information, numberStart, img, price, offer }) {
       </div>
       <div className='buttons mx-5 my-4 flex px-3 flex-row justify-between'>
         <div className='left flex gap-1 text-gray-500'>
-          <div className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
+          <div
+            className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'
+            onClick={() => { handleClick('Shop') }}
+          >
+
             <FontAwesomeIcon icon={faShoppingCart} className='text-gray-200' />
             <span
-              className='hidden group-hover:inline ml-2 text-gray-200'
-              onClick={handleClick}
+              className='hidden group-hover:inline ml-2 text-gray-200 '
             >
               خرید
             </span>
           </div>
-          <div className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
+          <div className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'
+            onClick={() => { handleClick('Interest') }}
+          >
             <FontAwesomeIcon icon={faHeart} className='text-gray-200' />
             <span
               className='hidden group-hover:inline ml-2 text-gray-200'
-              onClick={handleClick}
             >
               علاقه
             </span>
