@@ -23,7 +23,7 @@ export default function LoginMenu() {
         // Use setError to update the error state
         if (data.success === false) setError('نام کاربری یا پسوورد اشتباه است')
         else {
-          setUsernameLogin(username)
+          setUsernameLogin(data.user)
           navigate('/')
         }
       } else {

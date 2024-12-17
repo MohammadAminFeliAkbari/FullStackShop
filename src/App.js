@@ -7,7 +7,7 @@ import { createContext, useState } from "react";
 export const AppContext = createContext();
 
 export default function App() {
-  const [usernameLogin, setUsernameLogin] = useState("");
+  const [usernameLogin, setUsernameLogin] = useState({});
   return (
     <AppContext.Provider
       value={{

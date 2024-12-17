@@ -44,7 +44,7 @@ function FormSection() {
           const data = await response.json();
           if (data.success == false) setError("این یوزرنیم قبلا استفاده شده");
           else {
-            setUsernameLogin(values.userName);
+            setUsernameLogin(data.user);
             navigate("/");
           }
         }

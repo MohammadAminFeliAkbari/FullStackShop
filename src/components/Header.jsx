@@ -18,7 +18,7 @@ export default function Header() {
               className='rounded-full mr-3 h-6 sm:h-9'
               alt='Flowbite Logo'
             />
-            {usernameLogin && <><div className='extend-btn cursor-pointer group flex items-center relative justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
+            {usernameLogin.username != undefined && <><div className='extend-btn cursor-pointer group flex items-center relative justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
               <FontAwesomeIcon
                 icon={faShoppingCart}
                 className='text-gray-200'
@@ -26,7 +26,11 @@ export default function Header() {
               <span className='hidden group-hover:inline ml-2 text-gray-200'>
                 سبد خرید
               </span>
-              <span className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute text-balance' style={{ top: '-5px', right: '-5px' }}>۳</span>
+              {
+                usernameLogin.shoppingCard.length != 0 && <div className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute flex justify-center items-center' style={{ fontSize: '10px', top: '-5px', right: '-5px' }}>
+                  <span className={'translate-y-0.5'}>{usernameLogin.shoppingCard.length}</span>
+                </div>
+              }
             </div>
 
               <div className='extend-btn cursor-pointer relative group flex items-center justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
@@ -39,16 +43,19 @@ export default function Header() {
                 >
                   علاقه مندی
                 </span>
-                <span className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute text-balance' style={{ top: '-5px', right: '-5px' }}>۳</span>
-              </div></>}
+                {
+                  usernameLogin.interest.length != 0 && <div className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute flex justify-center items-center' style={{ fontSize: '10px', top: '-5px', right: '-5px' }}>
+                    <span className={'translate-y-0.5'}>{usernameLogin.interest.length}</span>
+                  </div>
+                }</div></>}
 
           </NavLink>
-          {usernameLogin ? (
+          {usernameLogin.username != undefined ? (
             <button
               onClick={() => sethidden(pre => !pre)}
               className='bg-blue-700 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800'
             >
-              {usernameLogin}
+              {usernameLogin.username}
             </button>
           ) : (
             <div className='flex items-center lg:order-2'>
@@ -106,14 +113,14 @@ export default function Header() {
                   </div>
                 </NavLink>
               </li>
-              {usernameLogin ? (
+              {usernameLogin.username != undefined ? (
                 <li>
                   <NavLink
                     to='#'
                     className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white   dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700'
                   >
                     <div
-                      onClick={() => setUsernameLogin('')}
+                      onClick={() => setUsernameLogin({})}
                       className='flex justify-center items-center gap-3 hover:bg-slate-500 p-2 rounded-md cursor-pointer'
                     >
                       <h3>خروج</h3>

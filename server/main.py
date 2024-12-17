@@ -116,7 +116,10 @@ async def login(username: str = Query(...), password: str = Query(...)):
     for item in users:
         if item["username"] == username and item["password"] == password:
             print({"success": True})
-            return {"success": True}
+            return {
+                "success": True,
+                "user": item,
+            }
     print({"success": False})
     return {"success": False}
 
@@ -134,7 +137,15 @@ async def sign(username: str = Query(...), password: str = Query(...)):
             "shoppingCard": [],
         }
     )
-    return {"success": True}
+    return {
+        "success": True,
+        "user": {
+            "username": username,
+            "password": password,
+            "interset": [],
+            "shoppingCard": [],
+        },
+    }
 
 
 @app.get("/forget")
@@ -285,8 +296,8 @@ def addInterest(
             for i in allProduct:
                 if i["img"] == img:
                     item["interest"].append(i)
-                    print(item)
-                    break
+                    return {"user": item}
+
     print(img, username)
 
 
@@ -300,7 +311,6 @@ def addShop(
             for i in allProduct:
                 if i["img"] == img:
                     item["shoppingCard"].append(i)
-                    print(item)
-                    break
+                    return {"user": item}
 
     print(img, username)

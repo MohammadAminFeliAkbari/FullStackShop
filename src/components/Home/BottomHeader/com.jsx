@@ -3,22 +3,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { AppContext } from '../../../App'
+import NoLogin from '../../NoLogin/noLogin'
 
 export default function Com({ information, numberStart, img, price, offer }) {
-  const { usernameLogin, BASE_URL } = useContext(AppContext)
+  const { usernameLogin, setUsernameLogin, BASE_URL } = useContext(AppContext)
 
   const handleClick = async (url) => {
-    // if (usernameLogin)
-    try {
-      const U = `${BASE_URL}add${url}?img=${img}&username=${usernameLogin}`
-      console.log(U);
+    if (usernameLogin.username != undefined) {
+      try {
+        const U = `${BASE_URL}add${url}?img=${img}&username=${usernameLogin.username}`;
+        console.log(U);
 
-      const response = await fetch(U)
-      if (!response.ok)
-        console.log("not ok");
-    } catch (error) {
-      console.log(error);
-    }
+        const response = await fetch(U);
+
+        if (!response.ok) {
+          console.log("Response not ok");
+          return; // You might want to return early if the response is not okay.  
+        }
+
+        // Await the JSON conversion and store it in a variable  
+        const jsonResponse = await response.json();
+        setUsernameLogin(jsonResponse.user)
+
+        console.log(jsonResponse.user);
+
+      } catch (error) {
+        console.log("Error:", error);
+      }
+    } else <NoLogin />
+
   }
 
   return (
@@ -45,7 +58,6 @@ export default function Com({ information, numberStart, img, price, offer }) {
             className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'
             onClick={() => { handleClick('Shop') }}
           >
-
             <FontAwesomeIcon icon={faShoppingCart} className='text-gray-200' />
             <span
               className='hidden group-hover:inline ml-2 text-gray-200 '
