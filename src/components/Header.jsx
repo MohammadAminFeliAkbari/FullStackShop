@@ -6,7 +6,7 @@ import { CiLogout } from 'react-icons/ci'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
-export default function Header () {
+export default function Header() {
   const [hidden, sethidden] = useState(true)
   const { usernameLogin, setUsernameLogin } = useContext(AppContext)
   return (
@@ -19,7 +19,7 @@ export default function Header () {
               className='rounded-full mr-3 h-6 sm:h-9'
               alt='Flowbite Logo'
             />
-            <div className='extend-btn cursor-pointer group flex items-center relative justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
+            {usernameLogin && <><div className='extend-btn cursor-pointer group flex items-center relative justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
               <FontAwesomeIcon
                 icon={faShoppingCart}
                 className='text-gray-200'
@@ -27,21 +27,22 @@ export default function Header () {
               <span className='hidden group-hover:inline ml-2 text-gray-200'>
                 سبد خرید
               </span>
-              <span className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute text-balance' style={{top:'-5px' , right:'-5px'}}>۳</span>
+              <span className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute text-balance' style={{ top: '-5px', right: '-5px' }}>۳</span>
             </div>
 
-            <div className='extend-btn cursor-pointer relative group flex items-center justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
-              <FontAwesomeIcon
-                icon={faHeart}
-                className='text-gray-200'
-              />
-              <span
-                className='hidden group-hover:inline ml-2 text-gray-200' 
-              >
-                علاقه مندی
-              </span>
-              <span className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute text-balance' style={{top:'-5px' , right:'-5px'}}>۳</span>
-            </div>
+              <div className='extend-btn cursor-pointer relative group flex items-center justify-center hover:w-32 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'>
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className='text-gray-200'
+                />
+                <span
+                  className='hidden group-hover:inline ml-2 text-gray-200'
+                >
+                  علاقه مندی
+                </span>
+                <span className='bg-red-600 rounded-full w-5 h-5 text-gray-300 absolute text-balance' style={{ top: '-5px', right: '-5px' }}>۳</span>
+              </div></>}
+
           </NavLink>
           {usernameLogin ? (
             <button
@@ -91,9 +92,8 @@ export default function Header () {
             </div>
           )}
           <div
-            className={`${
-              hidden ? 'hidden' : ''
-            }  justify-between  items-center w-full lg:flex lg:w-auto lg:order-1`}
+            className={`${hidden ? 'hidden' : ''
+              }  justify-between  items-center w-full lg:flex lg:w-auto lg:order-1`}
             id='mobile-menu-2'
           >
             <ul className='flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 gap-3'>

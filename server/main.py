@@ -1,9 +1,18 @@
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+
 
 app = FastAPI()
 
-users = [{"username": "admin", "password": "admin"}, {"username": "1", "password": "1"}]
+users = [
+    {"username": "admin", "password": "admin"},
+    {
+        "username": "1",
+        "password": "1",
+    },
+]
+
 
 # Allow CORS for all origins (consider adjusting for production)
 app.add_middleware(
@@ -46,8 +55,24 @@ async def sign(username: str = Query(...)):
 
 @app.get("/forget/change")
 async def sign(username: str = Query(...), password: str = Query(...)):
-    print(username , password)
+    print(username, password)
     for item in users:
         if item["username"] == username:
             item["password"] = password
             return {"success": True}
+
+
+# @app.get("/allProducts")
+# async def allProducts():
+#     return {"success" : True ,
+#             'data' : [
+
+#             ]}
+
+
+@app.get("/image")
+def bg(id: str = Query(...)):
+    path = "./image/"
+    path = path + id + ".jpg"
+    print(path)
+    return FileResponse(path)

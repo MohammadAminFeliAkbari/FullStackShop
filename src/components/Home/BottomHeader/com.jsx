@@ -5,9 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { AppContext } from '../../../App'
-import { SiOutline } from 'react-icons/si'
 
-export default function Com ({ information, numberStart, img, price, offer }) {
+export default function Com({ information, numberStart, img, price, offer }) {
   const { usernameLogin } = useContext(AppContext)
 
   const handleClick = () => {
