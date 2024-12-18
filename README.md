@@ -14,7 +14,7 @@ Open your terminal and run the following commands:
 ## bash
 ### npm install  
 ### npm start  
-### Navigate to the server directory:
+Navigate to the server directory:
 
 ## bash
 ### cd ./server/  
