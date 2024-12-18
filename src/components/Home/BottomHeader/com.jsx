@@ -4,9 +4,12 @@ import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { AppContext } from '../../../App'
 import NoLogin from '../../NoLogin/noLogin'
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Com({ information, numberStart, img, price, offer }) {
   const { usernameLogin, setUsernameLogin, BASE_URL } = useContext(AppContext)
+
+  const notify = () => (usernameLogin.username != undefined ? toast.success('!با موفقیت اضافه شد') : toast.error('!ابتدا وارد شوید'));
 
   const handleClick = async (url) => {
     if (usernameLogin.username != undefined) {
@@ -56,7 +59,7 @@ export default function Com({ information, numberStart, img, price, offer }) {
         <div className='left flex gap-1 text-gray-500'>
           <div
             className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'
-            onClick={() => { handleClick('Shop') }}
+            onClick={() => { handleClick('Shop'); notify() }}
           >
             <FontAwesomeIcon icon={faShoppingCart} className='text-gray-200' />
             <span
@@ -65,8 +68,9 @@ export default function Com({ information, numberStart, img, price, offer }) {
               خرید
             </span>
           </div>
+          <Toaster position='bottom-left' />
           <div className='extend-btn cursor-pointer group flex items-center justify-center hover:w-20 h-10 w-10 text-gray-800 bg-green-600 rounded-full transition-all duration-300'
-            onClick={() => { handleClick('Interest') }}
+            onClick={() => { handleClick('Interest'); notify() }}
           >
             <FontAwesomeIcon icon={faHeart} className='text-gray-200' />
             <span
@@ -75,6 +79,8 @@ export default function Com({ information, numberStart, img, price, offer }) {
               علاقه
             </span>
           </div>
+
+          <Toaster position='bottom-left' />
         </div>
         <div className='flex gap-1 items-center'>
           <span className='font-black text-gray-700'> هزار تومان </span>

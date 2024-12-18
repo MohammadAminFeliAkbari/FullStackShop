@@ -15,7 +15,7 @@ users = [
     {
         "username": "1",
         "password": "1",
-        "interset": [],
+        "interest": [],
         "shoppingCard": [],
     },
 ]
@@ -133,7 +133,7 @@ async def sign(username: str = Query(...), password: str = Query(...)):
         {
             "username": username,
             "password": password,
-            "interset": [],
+            "interest": [],
             "shoppingCard": [],
         }
     )
@@ -286,6 +286,7 @@ def slider():
     ]
 
 
+# Your existing addInterest function
 @app.get("/addInterest")
 def addInterest(
     username: str = Query(...),
@@ -297,8 +298,12 @@ def addInterest(
                 if i["img"] == img:
                     item["interest"].append(i)
                     return {"user": item}
+    return {"error": "User or image not found"}  # Optional error handling
 
-    print(img, username)
+
+@app.get("/")
+def all():
+    return {"users": users}
 
 
 @app.get("/addShop")
