@@ -9,7 +9,25 @@ import './css.css'
 export default function Header() {
   const [hidden, setHidden] = useState(true);
   const [total, setTotal] = useState(0)
-  const { usernameLogin, setUsernameLogin } = useContext(AppContext);
+  const { usernameLogin, setUsernameLogin, BASE_URL } = useContext(AppContext);
+
+  const fetch_DELETE = async (type, img) => {
+    const URL = `${BASE_URL}deleteItem?username=${usernameLogin.username}&img=${img}&type=${type}`;
+
+    try {
+      const response = await fetch(URL);
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      setUsernameLogin(data.user);
+    } catch (error) {
+      console.error('Failed to delete item:', error);
+      // Optionally, you can display an error message to the user  
+    }
+  };
 
   useEffect(() => {
     if (usernameLogin.shoppingCard && usernameLogin.shoppingCard.length > 0) {
@@ -51,7 +69,10 @@ export default function Header() {
                             </div>
                             <span className='text-[15px]'>{item.information}</span>
                             <img src={`http://127.0.0.1:8000/image?id=${item.img}`} className='w-12 my-2' alt="" />
-                            <FontAwesomeIcon icon={faXmark} className=' p-1 hover:bg-gray-400 rounded-md transition-all' />
+                            <FontAwesomeIcon
+                              icon={faXmark}
+                              onClick={() => { fetch_DELETE('shoppingCard', item.img) }}
+                              className=' p-1 hover:bg-gray-400 rounded-md transition-all' />
                           </div>
                         ))}
                         <div className='mt-3 flex justify-around items-center'>
@@ -78,14 +99,19 @@ export default function Header() {
                       <span className='translate-y-0.5'>{usernameLogin.interest.length}</span>
                     </div>
                   )}
-                  {usernameLogin.interest != undefined &&
+                  {usernameLogin.interest != undefined && usernameLogin.interest.length > 0 &&
                     <table id='' className='b absolute left-0 top-10 min-w-[300px] z-30 bg-white p-4 rounded-sm shadow-lg'>
                       <tbody>
                         {usernameLogin.interest.map((item) => (
                           <div className='flex items-center justify-center gap-3 border-b-[1px] w-full'>
                             <span className='text-[15px]'>{item.information}</span>
                             <img src={`http://127.0.0.1:8000/image?id=${item.img}`} className='w-12 h-12 my-2' alt="" />
-                            <FontAwesomeIcon icon={faXmark} className='p-1 hover:bg-gray-400 rounded-md transition-all' />
+                            <FontAwesomeIcon
+
+                              icon={faXmark}
+                              onClick={() => {
+                                fetch_DELETE('interest', item.img)
+                              }} className='p-1 hover:bg-gray-400 rounded-md transition-all' />
                           </div>
                         ))}
                       </tbody>

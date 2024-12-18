@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
@@ -319,3 +319,36 @@ def addShop(
                     return {"user": item}
 
     print(img, username)
+
+
+@app.get("/deleteItem")
+def delete_shop_item(
+    type: str = Query(...), username: str = Query(...), img: str = Query(...)
+):
+    print(type, username, img)
+    return FUNCTION_delete_interest_item(type, username, img)
+
+
+def FUNCTION_delete_interest_item(type: str, username: str, img_key: str):
+    # Check if 'type' is valid
+    if type not in ["interest", "shoppingCard"]:
+        raise HTTPException(status_code=400, detail="Invalid type specified")
+
+    for user in users:
+        if user["username"] == username:
+            # Use a set to keep track of images we've already filtered out
+            filtered_items = []
+            seen_images = set()  # Track images already removed
+
+            for item in user[type]:
+                if item["img"] != img_key or item["img"] in seen_images:
+                    filtered_items.append(item)
+                else:
+                    seen_images.add(
+                        item["img"]
+                    )  # Add img to seen_images when filtering out
+
+            user[type] = filtered_items
+            return {"user": user}
+
+    raise HTTPException(status_code=404, detail="User not found")
